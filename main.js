@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+  let draggedImage = null
+  let offsetX = 0
+  let offsetY = 0
+  let isDragging = false
+
   const searchInput = document.getElementById('search')
   const imageNumber = document.getElementById('imageNumber')
   const form = document.querySelector('.form')
@@ -79,7 +84,47 @@ document.addEventListener('DOMContentLoaded', () => {
           imgElement.src = imgUrl
           imgElement.alt = item.title || 'Image'
           imgElement.classList.add('result-image')
-          imgElement.id = 'image-result'
+
+          imgElement.style.height = '150px'
+
+          imgElement.style.position = 'relative' // Keep images in the flow initially
+
+          // Add the hover effect directly in JavaScript
+          imgElement.addEventListener('mouseenter', () => {
+            imgElement.style.opacity = '0.5'
+            imgElement.style.transition = 'opacity 0.25s ease-in-out'
+          })
+
+          imgElement.addEventListener('mouseleave', () => {
+            imgElement.style.opacity = '1'
+          })
+
+          imgElement.addEventListener('click', (e) => {
+            if (!isDragging) {
+              isDragging = true
+              draggedImage = imgElement
+              const rect = draggedImage.getBoundingClientRect()
+              offsetX = e.clientX - rect.left
+              offsetY = e.clientY - rect.top
+              draggedImage.style.position = 'absolute'
+              draggedImage.style.zIndex = 1000
+
+              document.addEventListener('mousemove', followMouse)
+            } else {
+              document.removeEventListener('mousemove', followMouse)
+              isDragging = false
+              draggedImage.style.zIndex = ''
+              draggedImage.style.opacity = '1'
+              draggedImage = null
+            }
+          })
+
+          function followMouse(e) {
+            if (draggedImage) {
+              draggedImage.style.left = e.pageX - offsetX + 'px'
+              draggedImage.style.top = e.pageY - offsetY + 'px'
+            }
+          }
 
           resultsContainer.appendChild(imgElement)
         }
@@ -95,9 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
       letterRendering: 1,
       allowTaint: false,
       useCORS: true,
+      scale: 3,
     }).then((canvas) => {
       let link = document.createElement('a')
-      link.download = 'screenshot.png'
+      link.download = 'moodboard.png'
       link.href = canvas.toDataURL()
       link.click()
     })
