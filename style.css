@@ -1,0 +1,114 @@
+:root {
+  --size-sm: clamp(1rem, 0.925rem + 0.25vw, 1.125rem);
+  --size-md: clamp(1.125rem, 1.1rem + 0.5vw, 1.25rem);
+  --site-gutter: clamp(16px, -76.4px + 19.25vw, 170px);
+  --font: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--size-sm);
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  background-color: snow;
+}
+
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 0;
+  width: fit-content;
+  padding: var(--site-gutter);
+}
+
+.results-container img {
+  height: 100px;
+  display: block;
+}
+
+/* p {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+} */
+
+form {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+/* Remove default margin and padding for all form elements */
+input,
+button {
+  background: none;
+  line-height: normal;
+}
+
+/* Ensure that input fields and buttons have consistent box-sizing */
+input,
+button {
+  box-sizing: border-box;
+}
+
+/* Additional styling for input and button elements */
+input[type='text'],
+input[type='number'],
+button {
+  font-family: var(--font);
+  font-size: var(--size-sm);
+  padding-block: 0px;
+  padding-inline: 0px;
+}
+
+/* Specific styling for the button */
+#searchButton,
+#clear,
+#capture-button {
+  color: black;
+  font-weight: 600;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  font-family: var(--font);
+  font-size: var(--size-sm);
+  padding: 1rem;
+}
+
+#searchButton:hover,
+#clear:hover,
+#capture-button:hover {
+  background-color: black;
+  cursor: pointer;
+  color: snow;
+}
+
+/* Specific styling for the search input */
+#search {
+  border: 2px solid blue;
+  padding: 0.5rem;
+}
+
+/* Specific styling for the imageNumber input */
+#imageNumber {
+  border: 2px solid blue;
+  padding: 0.5rem;
+}
+
+input::placeholder {
+  font-weight: 600;
+  color: blue;
+}
+
+/* #arenaLinkName {
+  border: 2px solid blue;
+  padding: 1rem;
+} */
+/* input[type='text']:focus {
+  outline: 2px dashed lightgray; /* oranges! yey */
