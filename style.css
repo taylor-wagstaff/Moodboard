@@ -59,7 +59,8 @@ body {
   margin-top: 100px;
 
   padding: 1rem;
-  height: fit-content;
+  /* has to be 100 for html2css */
+  height: 100%;
 }
 
 .results-container img {
