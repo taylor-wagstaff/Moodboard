@@ -1,11 +1,12 @@
 :root {
-  --size-sm: clamp(0.8rem, 0.925rem + 0.25vw, 1rem);
+  --size-sm: clamp(1rem, 0.925rem + 0.25vw, 1.125rem);
   --size-md: clamp(1.125rem, 1.1rem + 0.5vw, 1.25rem);
   --site-gutter: clamp(16px, -76.4px + 19.25vw, 170px);
-  --font: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font: 'Cormorant', sans-serif;
   --font-two: Arial, Helvetica, sans-serif;
-  --font-weight: 400;
+  --font-three: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-weight: 500;
   --color: black;
   --border: 0.5px solid black;
   --border-blue: 0.5px solid blue;
@@ -14,7 +15,6 @@
 
 html {
   font-size: 16px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 body {
@@ -22,7 +22,7 @@ body {
   font-size: var(--size-sm);
   font-weight: var(--font-weight);
   -webkit-font-smoothing: antialiased;
-  background-color: snow;
+  background-color: white;
   margin: 0;
   padding: 0;
 }
@@ -32,7 +32,7 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 0.01fr auto;
+  grid-template-rows: 50px auto;
 
   gap: var(--grid-gutter);
   height: 100vh;
@@ -41,9 +41,10 @@ body {
 
 .form-container {
   grid-column: span 8;
-  padding: 1rem;
+  padding: 0.5rem;
   height: 100%;
-  
+
+  border-bottom: 1px dashed gainsboro;
 }
 
 .results-container {
@@ -55,6 +56,8 @@ body {
   justify-content: center;
   overflow-y: auto;
   overflow-x: hidden;
+  margin-top: 100px;
+
   padding: 1rem;
   height: fit-content;
 }
@@ -73,21 +76,34 @@ body {
 
 /* form elements */
 
-#titleHeader {
-  font-weight: 1000;
- 
-  color: black;
-}
-
 form {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
-  gap: 5px;
-  color: var(--color);
+  align-items: center;
+  justify-content: space-between; /* Ensures space between left and right elements */
+  gap: 10px;
+  width: 100%; /* Ensures the form takes full width */
+}
 
-  /* border-bottom: var(--border); */
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+.form-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+#titleHeader {
+  margin-left: auto; /* Pushes the title header to the far right */
+  font-weight: 1000;
+  color: black;
+  text-align: right;
+}
+
+#arenaLinkName,
+input[type='text'],
+input[type='number'],
+button {
+  flex-grow: 0;
 }
 
 input[type='text'],
@@ -126,7 +142,7 @@ input[type='number']:focus {
 #searchButton:hover,
 #clear:hover,
 #capture-button:hover {
-  background-color: #cdcccc;
+  background-color: springgreen;
   border-radius: 1rem;
 
   cursor: pointer;
@@ -136,7 +152,7 @@ input[type='number']:focus {
 input::placeholder {
   font-weight: 500;
   font-style: italic;
-  color: rgb(165, 165, 165);
+  color: rgb(140, 140, 140);
 }
 
 input:-webkit-autofill,
