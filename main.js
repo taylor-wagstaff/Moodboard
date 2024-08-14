@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
   async function getContents(channelName, imageNumberValue) {
-    const url = `http://api.are.na/v2/channels/${channelName}/contents?direction=desc&sort=position&page=0&per=${imageNumberValue}`
+    const url = `https://api.are.na/v2/channels/${channelName}/contents?direction=desc&sort=position&page=0&per=${imageNumberValue}`
     try {
       const response = await fetch(url)
       if (!response.ok) {
