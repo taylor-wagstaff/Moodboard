@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
           imgElement.classList.add('result-image')
 
           imgElement.style.height = '150px'
+          imgElement.style.width = 'auto'
 
           imgElement.style.position = 'relative' // Keep images in the flow initially
 
@@ -108,6 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
               offsetY = e.clientY - rect.top
               draggedImage.style.position = 'absolute'
               draggedImage.style.zIndex = 1000
+              draggedImage.style.cursor = 'move'
+              // Unlock dimensions when drag ends
 
               document.addEventListener('mousemove', followMouse)
             } else {
@@ -115,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
               isDragging = false
               draggedImage.style.zIndex = ''
               draggedImage.style.opacity = '1'
+              draggedImage.style.cursor = 'pointer'
               draggedImage = null
             }
           })

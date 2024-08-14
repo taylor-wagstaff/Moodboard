@@ -9,10 +9,10 @@
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
 
     <title>Moodboard</title>
-    <link href="/public/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="/public/squares.png" rel="icon" type="image/x-icon" />
   </head>
   <body>
-    <main>
+    <main class="grid-container">
       <div class="form-container">
         <form class="form">
           <p id="arenaLinkName">https://www.are.na/username/</p>
@@ -26,12 +26,12 @@
             id="imageNumber"
             type="number"
             class="input"
-            placeholder="Number of images..."
+            placeholder="Images (limit 100)"
           />
           <button type="submit" id="searchButton">🔍</button>
           <button type="button" id="clear" class="clear-results">❌</button>
-          <button id="capture-button">⏏️</button>
-          <p>Moodboard Maker</p>
+          <button id="capture-button">📁</button>
+          <p id="titleHeader">Moodboard Maker</p>
         </form>
       </div>
       <div class="results-container"></div>

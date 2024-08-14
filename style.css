@@ -1,13 +1,15 @@
 :root {
-  --size-sm: clamp(1rem, 0.925rem + 0.25vw, 1.125rem);
+  --size-sm: clamp(0.8rem, 0.925rem + 0.25vw, 1rem);
   --size-md: clamp(1.125rem, 1.1rem + 0.5vw, 1.25rem);
   --site-gutter: clamp(16px, -76.4px + 19.25vw, 170px);
   --font: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-two: Arial, Helvetica, sans-serif;
   --font-weight: 400;
-  --color: black;
+  --color: #696969;
   --border: 0.5px solid black;
   --border-blue: 0.5px solid blue;
+  --grid-gutter: 10px; /* Adjust gutter size */
 }
 
 html {
@@ -21,21 +23,53 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: snow;
   margin: 0;
+  padding: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); /* 8 columns grid */
+  grid-template-rows: 0.2fr auto; /* Auto height for first row, rest for second */
+
+  gap: var(--grid-gutter); /* Gutter between grid items */
+  height: 100vh;
+  /* padding: var(--site-gutter); */
+}
+
+.form-container {
+  grid-area: 'form';
+  grid-column: span 8;
+  padding: 1rem;
+  height: 100%;
 }
 
 .results-container {
+  grid-column: span 8;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
   justify-content: center;
-  gap: 0;
-  width: fit-content;
-  padding: var(--site-gutter);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem;
+  height: fit-content;
 }
+
+/* .results-container {
+  grid-column: span 8;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  overflow: auto;
+  padding-top: 1rem;
+} */
 
 .results-container img {
   height: 150px;
+  width: auto;
   display: block;
 }
 
@@ -43,35 +77,24 @@ body {
   cursor: pointer;
   opacity: 0.5;
   transition: opacity 0.25s ease-in-out;
-  -moz-transition: opacity 0.25s ease-in-out;
-  -webkit-transition: opacity 0.25s ease-in-out;
 }
 
 form {
   display: flex;
   flex-direction: row;
+  align-items: baseline;
   gap: 5px;
-  padding: 1rem;
-
   color: var(--color);
   border-bottom: var(--border);
-  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
 }
 
-/* Remove default margin and padding for all form elements */
 input,
 button {
   background: none;
   line-height: normal;
-}
-
-/* Ensure that input fields and buttons have consistent box-sizing */
-input,
-button {
   box-sizing: border-box;
 }
 
-/* Additional styling for input and button elements */
 input[type='text'],
 input[type='number'],
 button {
@@ -79,17 +102,15 @@ button {
   font-size: var(--size-sm);
   padding-block: 0px;
   padding-inline: 0px;
+  line-height: 0;
 }
 
-/* Specific styling for the button */
 #searchButton,
 #clear,
 #capture-button {
   color: var(--color);
   font-weight: var(--font-weight);
   background-color: #ededed;
-  /* border: var(--border);
-  border-radius: 0.5rem; */
   border: 0;
   font-family: var(--font);
   font-size: var(--size-sm);
@@ -104,13 +125,11 @@ button {
   color: snow;
 }
 
-/* Specific styling for the imageNumber input */
 #search,
 #imageNumber {
   border: 0;
   padding: 0.5rem;
   background-color: snow;
-  /* border: var(--border-blue); */
 }
 
 #search:hover,
@@ -124,9 +143,22 @@ input::placeholder {
   color: rgb(165, 165, 165);
 }
 
-/* #arenaLinkName {
-  border: 2px solid blue;
-  padding: 1rem;
-} */
-/* input[type='text']:focus {
-  outline: 2px dashed lightgray; /* oranges! yey */
+input[type='text']:focus,
+input[type='number']:focus {
+  outline: 2px solid springgreen;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 2px solid springgreen;
+  -webkit-text-fill-color: var(--color);
+  -webkit-box-shadow: 0 0 0px 1000px #ededed inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
