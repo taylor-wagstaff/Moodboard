@@ -6,7 +6,7 @@
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --font-two: Arial, Helvetica, sans-serif;
   --font-weight: 400;
-  --color: #696969;
+  --color: black;
   --border: 0.5px solid black;
   --border-blue: 0.5px solid blue;
   --grid-gutter: 10px; /* Adjust gutter size */
@@ -14,6 +14,7 @@
 
 html {
   font-size: 16px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 body {
@@ -26,21 +27,23 @@ body {
   padding: 0;
 }
 
+/* grid */
+
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr); /* 8 columns grid */
-  grid-template-rows: 0.2fr auto; /* Auto height for first row, rest for second */
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 0.01fr auto;
 
-  gap: var(--grid-gutter); /* Gutter between grid items */
+  gap: var(--grid-gutter);
   height: 100vh;
   /* padding: var(--site-gutter); */
 }
 
 .form-container {
-  grid-area: 'form';
   grid-column: span 8;
   padding: 1rem;
   height: 100%;
+  
 }
 
 .results-container {
@@ -56,17 +59,6 @@ body {
   height: fit-content;
 }
 
-/* .results-container {
-  grid-column: span 8;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  overflow: auto;
-  padding-top: 1rem;
-} */
-
 .results-container img {
   height: 150px;
   width: auto;
@@ -79,20 +71,23 @@ body {
   transition: opacity 0.25s ease-in-out;
 }
 
+/* form elements */
+
+#titleHeader {
+  font-weight: 1000;
+ 
+  color: black;
+}
+
 form {
   display: flex;
   flex-direction: row;
   align-items: baseline;
   gap: 5px;
   color: var(--color);
-  border-bottom: var(--border);
-}
 
-input,
-button {
-  background: none;
-  line-height: normal;
-  box-sizing: border-box;
+  /* border-bottom: var(--border); */
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
 }
 
 input[type='text'],
@@ -100,9 +95,21 @@ input[type='number'],
 button {
   font-family: var(--font);
   font-size: var(--size-sm);
-  padding-block: 0px;
-  padding-inline: 0px;
-  line-height: 0;
+}
+input[type='text'],
+input[type='number'] {
+  background-color: snow;
+  border: 0;
+}
+
+input[type='text']:hover,
+input[type='number']:hover {
+  background-color: #ededed;
+}
+
+input[type='text']:focus,
+input[type='number']:focus {
+  outline: 2px solid deepskyblue;
 }
 
 #searchButton,
@@ -110,42 +117,26 @@ button {
 #capture-button {
   color: var(--color);
   font-weight: var(--font-weight);
-  background-color: #ededed;
+  background-color: snow;
   border: 0;
   font-family: var(--font);
   font-size: var(--size-sm);
-  padding: 1rem;
 }
 
 #searchButton:hover,
 #clear:hover,
 #capture-button:hover {
-  background-color: black;
+  background-color: #cdcccc;
+  border-radius: 1rem;
+
   cursor: pointer;
   color: snow;
-}
-
-#search,
-#imageNumber {
-  border: 0;
-  padding: 0.5rem;
-  background-color: snow;
-}
-
-#search:hover,
-#imageNumber:hover {
-  background-color: #ededed;
 }
 
 input::placeholder {
   font-weight: 500;
   font-style: italic;
   color: rgb(165, 165, 165);
-}
-
-input[type='text']:focus,
-input[type='number']:focus {
-  outline: 2px solid springgreen;
 }
 
 input:-webkit-autofill,
@@ -157,7 +148,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  border: 2px solid springgreen;
+  border: 0;
   -webkit-text-fill-color: var(--color);
   -webkit-box-shadow: 0 0 0px 1000px #ededed inset;
   transition: background-color 5000s ease-in-out 0s;

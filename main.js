@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .addEventListener('click', function () {
       const container = document.querySelector('.results-container')
 
-      // Ensure images are fully loaded
       const images = container.getElementsByTagName('img')
       const totalImages = images.length
       let imagesLoaded = 0
@@ -90,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
           imgElement.style.position = 'relative' // Keep images in the flow initially
 
-          // Add the hover effect directly in JavaScript
           imgElement.addEventListener('mouseenter', () => {
             imgElement.style.opacity = '0.5'
             imgElement.style.transition = 'opacity 0.25s ease-in-out'
@@ -110,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
               draggedImage.style.position = 'absolute'
               draggedImage.style.zIndex = 1000
               draggedImage.style.cursor = 'move'
-              // Unlock dimensions when drag ends
 
               document.addEventListener('mousemove', followMouse)
             } else {
@@ -138,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // save the moodboard to png
   function captureScreenshot(container) {
     html2canvas(container, {
       logging: true,
