@@ -2,6 +2,7 @@
   --size-sm: clamp(1rem, 0.925rem + 0.25vw, 1.125rem);
   --size-md: clamp(1.125rem, 1.1rem + 0.5vw, 1.25rem);
   --site-gutter: clamp(16px, -76.4px + 19.25vw, 170px);
+  --image-size:clamp(50px, 150px, 200px);
   --font: 'Cormorant', sans-serif;
   --font-two: Arial, Helvetica, sans-serif;
   --font-three: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
@@ -65,7 +66,7 @@ body {
 }
 
 .results-container img {
-  height: 15%;
+  height: 150px;
   width: auto;
   display: block;
 }
