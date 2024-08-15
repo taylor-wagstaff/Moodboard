@@ -57,7 +57,8 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: 100px;
-
+  padding-top: 2rem;
+  
   padding: 1rem;
   /* has to be 100 for html2css */
   height: 100%;
