@@ -3,8 +3,6 @@
   --size-md: clamp(1.125rem, 1.1rem + 0.5vw, 1.25rem);
   --site-gutter: clamp(16px, -76.4px + 19.25vw, 170px);
   --image-size: clamp(50px, 150px, 200px);
-  --font: 'Cormorant', sans-serif;
-  --font-two: Arial, Helvetica, sans-serif;
   --system-ui: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --font-weight: 500;
@@ -59,7 +57,7 @@ body {
   justify-content: center;
   grid-area: 'results';
   padding: 1rem;
-  /* has to be 100 for html2css */
+  /* has to be 100% for html2css to work?*/
   height: 100%;
 }
 
@@ -82,9 +80,9 @@ form {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between; /* Ensures space between left and right elements */
+  justify-content: space-between;
   gap: 10px;
-  width: 100%; /* Ensures the form takes full width */
+  width: 100%;
 }
 
 .form-left {
@@ -165,8 +163,8 @@ select:-webkit-autofill:focus {
 
 /* Ipad */
 /* Between 700px and 1000px */
-@media (700px <= width <= 1000px) {
-}
+/* @media (700px <= width <= 1000px) {
+} */
 
 /* Iphone */
 /* Less than or equal to 700px */
@@ -174,7 +172,6 @@ select:-webkit-autofill:focus {
   form {
     display: flex;
     flex-direction: column;
-
     align-items: flex-start;
     float: left;
     width: 100%; /* Ensures the form takes full width */
@@ -190,7 +187,6 @@ select:-webkit-autofill:focus {
   #titleHeader {
     font-weight: 1000;
     color: black;
-  
   }
 
   p {
