@@ -19,7 +19,6 @@
     <link href="/public/squares.png" rel="icon" type="image/x-icon" />
   </head>
 
-
   <!-- 
   -loading screen
   -Media Queries
@@ -31,12 +30,12 @@
       <div class="form-container">
         <form class="form">
           <div class="form-left">
-            <p id="arenaLinkName">https://www.are.na/username/</p>
+            
             <input
               id="search"
               type="text"
               class="input"
-              placeholder="Channel url name..."
+              placeholder="Channel URL Name..."
             />
             <input
               id="imageNumber"
@@ -44,13 +43,14 @@
               class="input"
               placeholder="Images (limit 100)"
             />
-            <button type="submit" id="searchButton">🔍</button>
-            <button type="button" id="clear" class="clear-results">❌</button>
-            <button id="capture-button">📁</button>
+            <div id="buttons">
+              <button type="submit" id="searchButton">🔍</button>
+              <button type="button" id="clear" class="clear-results">❌</button>
+              <button id="capture-button">📁</button>
+            </div>
+            <p id="titleHeader">MOODBOARD MAKER</p>
           </div>
-          <p id="titleHeader">MOODBOARD MAKER</p>
         </form>
-        
       </div>
       <div class="results-container"></div>
     </main>

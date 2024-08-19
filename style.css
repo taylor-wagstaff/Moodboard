@@ -2,10 +2,10 @@
   --size-sm: clamp(1rem, 0.925rem + 0.25vw, 1.125rem);
   --size-md: clamp(1.125rem, 1.1rem + 0.5vw, 1.25rem);
   --site-gutter: clamp(16px, -76.4px + 19.25vw, 170px);
-  --image-size:clamp(50px, 150px, 200px);
+  --image-size: clamp(50px, 150px, 200px);
   --font: 'Cormorant', sans-serif;
   --font-two: Arial, Helvetica, sans-serif;
-  --font-three: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+  --system-ui: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --font-weight: 500;
   --color: black;
@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  font-family: var(--font);
+  font-family: var(--system-ui);
   font-size: var(--size-sm);
   font-weight: var(--font-weight);
   -webkit-font-smoothing: antialiased;
@@ -32,41 +32,40 @@ body {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 50px auto;
-
-  gap: var(--grid-gutter);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    'form form form form form form form form form form form form'
+    'results results results results results results results results results results results results';
+  /* gap: var(--grid-gutter); */
   height: 100vh;
-  /* padding: var(--site-gutter); */
 }
 
 .form-container {
-  grid-column: span 8;
+  grid-column: span 12;
+  grid-area: 'form';
   padding: 0.5rem;
-  height: 100%;
+  height: auto;
 
-  border-bottom: 1px dashed gainsboro;
+  border-bottom: 1px solid black;
 }
 
 .results-container {
-  grid-column: span 8;
+  grid-column: span 12;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
   justify-content: center;
- 
-
-
-  
-  
+  grid-area: 'results';
   padding: 1rem;
   /* has to be 100 for html2css */
-  height:100%;
+  height: 100%;
 }
 
 .results-container img {
-  height: 150px;
+  /* height: 150px; */
+  height: 20vh;
   width: auto;
   display: block;
 }
@@ -96,29 +95,21 @@ form {
 }
 
 #titleHeader {
-  margin-left: auto; /* Pushes the title header to the far right */
   font-weight: 1000;
   color: black;
-  text-align: right;
-}
-
-#arenaLinkName,
-input[type='text'],
-input[type='number'],
-button {
-  flex-grow: 0;
 }
 
 input[type='text'],
 input[type='number'],
 button {
-  font-family: var(--font);
+  font-family: var(--system-ui);
   font-size: var(--size-sm);
 }
 input[type='text'],
 input[type='number'] {
-  background-color: snow;
+  background-color: rgb(242, 242, 242);
   border: 0;
+  padding: 0.2rem;
 }
 
 input[type='text']:hover,
@@ -136,9 +127,10 @@ input[type='number']:focus {
 #capture-button {
   color: var(--color);
   font-weight: var(--font-weight);
-  background-color: snow;
+  background-color: rgb(242, 242, 242);
   border: 0;
-  font-family: var(--font);
+  padding: 0.2rem;
+  font-family: var(--system-ui);
   font-size: var(--size-sm);
 }
 
@@ -147,15 +139,13 @@ input[type='number']:focus {
 #capture-button:hover {
   background-color: springgreen;
   border-radius: 1rem;
-
   cursor: pointer;
-  color: snow;
 }
 
 input::placeholder {
   font-weight: 500;
-  font-style: italic;
-  color: rgb(140, 140, 140);
+
+  color: dodgerblue;
 }
 
 input:-webkit-autofill,
@@ -171,4 +161,44 @@ select:-webkit-autofill:focus {
   -webkit-text-fill-color: var(--color);
   -webkit-box-shadow: 0 0 0px 1000px #ededed inset;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Ipad */
+/* Between 700px and 1000px */
+@media (700px <= width <= 1000px) {
+}
+
+/* Iphone */
+/* Less than or equal to 700px */
+@media (width <= 700px) {
+  form {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+    float: left;
+    width: 100%; /* Ensures the form takes full width */
+  }
+
+  .form-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  #titleHeader {
+    font-weight: 1000;
+    color: black;
+  
+  }
+
+  p {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+  }
+  #buttons {
+    display: flex;
+    flex-direction: row;
+  }
 }

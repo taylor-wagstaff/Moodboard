@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search')
   const imageNumber = document.getElementById('imageNumber')
   const form = document.querySelector('.form')
+  const resultsContainer = document.querySelector('.results-container')
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -24,14 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.value = ''
     imageNumber.value = ''
 
-    const resultsContainer = document.querySelector('.results-container')
     resultsContainer.innerHTML = ''
   })
 
   document
     .getElementById('capture-button')
     .addEventListener('click', function () {
-      const container = document.querySelector('.results-container')
+      const container = resultsContainer
 
       const images = container.getElementsByTagName('img')
       const totalImages = images.length
@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json()
       console.log(data)
 
-      const resultsContainer = document.querySelector('.results-container')
       resultsContainer.innerHTML = ''
 
       data.contents.forEach((item) => {
@@ -83,9 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
           imgElement.src = imgUrl
           imgElement.alt = item.title || 'Image'
           imgElement.classList.add('result-image')
-
-          imgElement.style.height = '150px'
-          imgElement.style.width = 'auto'
 
           imgElement.style.position = 'relative' // Keep images in the flow initially
 
@@ -122,8 +118,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
           function followMouse(e) {
             if (draggedImage) {
-              draggedImage.style.left = e.pageX - offsetX + 'px'
-              draggedImage.style.top = e.pageY - offsetY + 'px'
+              // of container size
+              const containerRect = resultsContainer.getBoundingClientRect()
+              const imgWidth = draggedImage.offsetWidth
+              const imgHeight = draggedImage.offsetHeight
+
+              let newX = e.pageX - offsetX
+              let newY = e.pageY - offsetY
+
+              //chatgpt for this
+              if (newX < containerRect.left) newX = containerRect.left
+              if (newX + imgWidth > containerRect.right)
+                newX = containerRect.right - imgWidth
+              if (newY < containerRect.top) newY = containerRect.top
+              if (newY + imgHeight > containerRect.bottom)
+                newY = containerRect.bottom - imgHeight
+
+              draggedImage.style.left = newX + 'px'
+              draggedImage.style.top = newY + 'px'
             }
           }
 
