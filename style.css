@@ -1,8 +1,9 @@
 :root {
   --size-sm: clamp(1rem, 0.925rem + 0.25vw, 1.125rem);
-  --size-md: clamp(1.125rem, 1.1rem + 0.5vw, 1.25rem);
+  --size-md: clamp(1rem, 1.1rem + 0.5vw, 2rem);
   --site-gutter: clamp(16px, -76.4px + 19.25vw, 170px);
   --image-size: clamp(50px, 150px, 200px);
+  --font: Arial, Helvetica, sans-serif;
   --system-ui: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --font-weight: 500;
@@ -17,7 +18,8 @@ html {
 }
 
 body {
-  font-family: var(--system-ui);
+  font-family: var(--font);
+
   font-size: var(--size-sm);
   font-weight: var(--font-weight);
   -webkit-font-smoothing: antialiased;
@@ -44,8 +46,8 @@ body {
   grid-area: 'form';
   padding: 0.5rem;
   height: auto;
-
-  border-bottom: 1px solid black;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
 }
 
 .results-container {
@@ -94,6 +96,11 @@ form {
 
 #titleHeader {
   font-weight: 1000;
+  font-size: var(--size-md);
+  font-style: var(--system-ui);
+  text-align: right; /* Aligns the text to the right */
+
+  margin-left: auto;
   color: black;
 }
 
@@ -105,14 +112,15 @@ button {
 }
 input[type='text'],
 input[type='number'] {
-  background-color: rgb(242, 242, 242);
+  background-color: white;
   border: 0;
   padding: 0.2rem;
 }
 
 input[type='text']:hover,
 input[type='number']:hover {
-  background-color: #ededed;
+  background-color: white;
+  outline: 2px solid gainsboro;
 }
 
 input[type='text']:focus,
@@ -124,25 +132,26 @@ input[type='number']:focus {
 #clear,
 #capture-button {
   color: var(--color);
-  font-weight: var(--font-weight);
-  background-color: rgb(242, 242, 242);
+  font-weight: 1000;
+  background-color: white;
   border: 0;
   padding: 0.2rem;
-  font-family: var(--system-ui);
+  font-family: var(--font);
   font-size: var(--size-sm);
 }
 
 #searchButton:hover,
 #clear:hover,
 #capture-button:hover {
-  background-color: springgreen;
+  background-color: black;
   border-radius: 1rem;
   cursor: pointer;
+  color: white;
 }
 
 input::placeholder {
   font-weight: 500;
-
+font-style: italic;
   color: dodgerblue;
 }
 
@@ -187,6 +196,9 @@ select:-webkit-autofill:focus {
   #titleHeader {
     font-weight: 1000;
     color: black;
+    text-align: left;
+
+    margin-left: 0;
   }
 
   p {
