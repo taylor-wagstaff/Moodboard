@@ -173,48 +173,7 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Ipad */
-/* Between 700px and 1000px */
-/* @media (700px <= width <= 1000px) {
-} */
 
-/* Iphone */
-/* Less than or equal to 700px */
-@media (width <= 700px) {
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    float: left;
-    width: 100%; /* Ensures the form takes full width */
-  }
-
-  .form-left {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-  }
-
-  #titleHeader {
-    font-weight: 1000;
-    color: black;
-    text-align: left;
-
-    margin-left: 0;
-  }
-
-  p {
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-  }
-  #buttons {
-    display: flex;
-    flex-direction: row;
-  }
-}
-
-/* modal */
 
 /* Modal */
 .modal {
@@ -270,4 +229,58 @@ h2 {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* Ipad */
+/* Between 700px and 1000px */
+/* @media (700px <= width <= 1000px) {
+} */
+
+/* Iphone */
+/* Less than or equal to 700px */
+@media (width <= 700px) {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    float: left;
+    width: 100%; /* Ensures the form takes full width */
+  }
+
+  .form-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  #titleHeader {
+    font-weight: 1000;
+    color: black;
+    text-align: left;
+
+    margin-left: 0;
+  }
+
+  p {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+  }
+  #buttons {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+    border: 5px solid black;
+    width: 250px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 }
