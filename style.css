@@ -146,7 +146,7 @@ input[type='number']:focus {
 #clear:hover,
 #capture-button:hover,
 #help:hover {
-  background-color:whitesmoke;
+  background-color: whitesmoke;
   border: 2px solid black;
   border-radius: 2rem;
   cursor: pointer;
@@ -233,7 +233,10 @@ select:-webkit-autofill:focus {
 .modal-content {
   background-color: #fefefe;
   margin: 5% auto;
-  padding: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  padding-top: 1rem;
   border: 5px solid black;
   width: 40%;
   word-wrap: break-word;
@@ -249,11 +252,17 @@ select:-webkit-autofill:focus {
   list-style: square;
 }
 
+h2 {
+  margin-top: 3rem;
+}
+
 .close {
   color: #aaa;
   float: right;
   font-size: 2rem;
   font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
 
 .close:hover,
