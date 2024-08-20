@@ -10,7 +10,7 @@
     <meta name="description" content="Moodboard Maker for Are.na" />
     <meta name="keywords" content="Moodboard Maker Arena Are.na" />
     <meta name="author" content="Taylor Wagstaff" />
-    <link href="/public/squares.png" rel="icon" type="image/x-icon" />
+    <link href="/public/favicon.ico" rel="icon" type="image/x-icon" />
   </head>
 
   <!-- 
@@ -28,7 +28,7 @@
               id="search"
               type="text"
               class="input"
-              placeholder="Channel URL Name"
+              placeholder="Channel-URL-Name"
             />
             <input
               id="imageNumber"
@@ -38,14 +38,47 @@
             />
             <div id="buttons">
               <button type="submit" id="searchButton">Search</button>
-              <button type="button" id="clear" class="clear-results">Clear</button>
+              <button type="button" id="clear" class="clear-results">
+                Clear
+              </button>
               <button id="capture-button">Save</button>
+              <button id="help">Info</button>
             </div>
           </div>
           <p id="titleHeader">ARENA MOODBOARD</p>
         </form>
       </div>
       <div class="results-container"></div>
+      <div id="helpModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>INFORMATION</h2>
+          <ul>
+            <li>
+              This website is for Desktop only. Phone functionality may be added
+              later, dependent on use.
+            </li>
+            <li>
+              The channel name is found in the channel URL link. For example,
+              'storage-facility' would be the channel name from:
+              'https://www.are.na/taylor-wagstaff/storage-facility'
+            </li>
+            <li>
+              I haven't been able to increase the image limit, the Arena API
+              docs are currently sparse, so you cannot unfortunately go back
+              further in the channel other than the latest 100 images. I'm sure
+              there's a way, I just haven't found it.
+            </li>
+            <li>
+              I made this to be able to quickly present visual research, to use
+              as a possible wall-printed moodboard, because I love using Arena,
+              to learn more javascript, and because I could not find any other
+              online moodboard solutions for Arena.
+            </li>
+          </ul>
+          <p>Made by Taylor Wagstaff.</p>
+        </div>
+      </div>
     </main>
   </body>
 </html>

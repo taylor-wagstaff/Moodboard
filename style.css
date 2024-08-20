@@ -52,13 +52,14 @@ body {
 
 .results-container {
   grid-column: span 12;
+  grid-area: 'results';
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
   justify-content: center;
-  grid-area: 'results';
   padding: 1rem;
+
   /* has to be 100% for html2css to work?*/
   height: 100%;
 }
@@ -97,7 +98,7 @@ form {
 #titleHeader {
   font-weight: 1000;
   font-size: var(--size-md);
-  font-style: var(--system-ui);
+  font-family: var(--system-ui);
   text-align: right; /* Aligns the text to the right */
 
   margin-left: auto;
@@ -130,28 +131,30 @@ input[type='number']:focus {
 
 #searchButton,
 #clear,
-#capture-button {
+#capture-button,
+#help {
   color: var(--color);
   font-weight: 1000;
-  background-color: white;
-  border: 0;
-  padding: 0.2rem;
+  background-color: transparent;
+  border: 2px solid transparent;
+  padding: 0.5rem;
   font-family: var(--font);
   font-size: var(--size-sm);
 }
 
 #searchButton:hover,
 #clear:hover,
-#capture-button:hover {
-  background-color: black;
-  border-radius: 1rem;
+#capture-button:hover,
+#help:hover {
+  background-color:whitesmoke;
+  border: 2px solid black;
+  border-radius: 2rem;
   cursor: pointer;
-  color: white;
 }
 
 input::placeholder {
   font-weight: 500;
-font-style: italic;
+  font-style: italic;
   color: dodgerblue;
 }
 
@@ -166,7 +169,7 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   border: 0;
   -webkit-text-fill-color: var(--color);
-  -webkit-box-shadow: 0 0 0px 1000px #ededed inset;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -209,4 +212,53 @@ select:-webkit-autofill:focus {
     display: flex;
     flex-direction: row;
   }
+}
+
+/* modal */
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  font-family: var(--system-ui);
+  padding: 1rem;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 2rem;
+  border: 5px solid black;
+  width: 40%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.modal-content ul {
+  padding-inline-start: 0px;
+}
+
+.modal-content li {
+  margin-bottom: 1rem;
+  list-style: square;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

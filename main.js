@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const data = await response.json()
-      console.log(data)
+     
 
       resultsContainer.innerHTML = ''
 
@@ -123,6 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
               const imgWidth = draggedImage.offsetWidth
               const imgHeight = draggedImage.offsetHeight
 
+              console.log(containerRect)
+
               let newX = e.pageX - offsetX
               let newY = e.pageY - offsetY
 
@@ -154,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
       letterRendering: 1,
       allowTaint: false,
       useCORS: true,
-      scale: 3,
+      scale: 5,
     }).then((canvas) => {
       let link = document.createElement('a')
       link.download = 'moodboard.png'
@@ -162,4 +164,24 @@ document.addEventListener('DOMContentLoaded', () => {
       link.click()
     })
   }
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  const helpButton = document.getElementById('help')
+  const modal = document.getElementById('helpModal')
+  const closeButton = document.querySelector('.close')
+
+  helpButton.addEventListener('click', () => {
+    modal.style.display = 'block'
+  })
+
+  closeButton.addEventListener('click', () => {
+    modal.style.display = 'none'
+  })
+
+  window.addEventListener('click', (event) => {
+    if (event.target == modal) {
+      modal.style.display = 'none'
+    }
+  })
 })
