@@ -173,8 +173,6 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-
-
 /* Modal */
 .modal {
   display: none;
@@ -229,6 +227,24 @@ h2 {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.loader {
+  display: none;
+  width: 30%;
+  height: 30%;
+  border: 5px solid #000000;
+  animation: loader 2s infinite ease;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Ipad */

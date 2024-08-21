@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const imageNumber = document.getElementById('imageNumber')
   const form = document.querySelector('.form')
   const resultsContainer = document.querySelector('.results-container')
+  const loader = document.getElementById('loader')
+
+  const helpButton = document.getElementById('help')
+  const modal = document.getElementById('helpModal')
+  const closeButton = document.querySelector('.close')
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -16,7 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageNumberValue = imageNumber.value.trim()
 
     if (channelName && imageNumberValue) {
-      await getContents(channelName, imageNumberValue)
+      loader.style.display = 'block' // Show loader
+
+      // Introduce a 2-second delay before loading the images
+      setTimeout(async () => {
+        await getContents(channelName, imageNumberValue)
+        loader.style.display = 'none' // Hide loader after images load
+      }, 2000) // 2-second delay
     }
   })
 
@@ -24,10 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
   clearButton.addEventListener('click', () => {
     searchInput.value = ''
     imageNumber.value = ''
-
     resultsContainer.innerHTML = ''
   })
 
+  // Capture screenshot functionality
   document
     .getElementById('capture-button')
     .addEventListener('click', function () {
@@ -70,8 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const data = await response.json()
-     
-
       resultsContainer.innerHTML = ''
 
       data.contents.forEach((item) => {
@@ -82,8 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
           imgElement.src = imgUrl
           imgElement.alt = item.title || 'Image'
           imgElement.classList.add('result-image')
-
-          imgElement.style.position = 'relative' // Keep images in the flow initially
+          imgElement.style.position = 'relative'
 
           imgElement.addEventListener('mouseenter', () => {
             imgElement.style.opacity = '0.5'
@@ -118,17 +126,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
           function followMouse(e) {
             if (draggedImage) {
-              // of container size
               const containerRect = resultsContainer.getBoundingClientRect()
               const imgWidth = draggedImage.offsetWidth
               const imgHeight = draggedImage.offsetHeight
 
-              console.log(containerRect)
-
               let newX = e.pageX - offsetX
               let newY = e.pageY - offsetY
 
-              //chatgpt for this
               if (newX < containerRect.left) newX = containerRect.left
               if (newX + imgWidth > containerRect.right)
                 newX = containerRect.right - imgWidth
@@ -149,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // save the moodboard to png
+  // Save the moodboard to PNG
   function captureScreenshot(container) {
     html2canvas(container, {
       logging: true,
@@ -164,13 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
       link.click()
     })
   }
-})
 
-document.addEventListener('DOMContentLoaded', () => {
-  const helpButton = document.getElementById('help')
-  const modal = document.getElementById('helpModal')
-  const closeButton = document.querySelector('.close')
-
+  // Modal functionality
   helpButton.addEventListener('click', () => {
     modal.style.display = 'block'
   })
