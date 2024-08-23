@@ -33,19 +33,20 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 0.1fr auto;
   grid-template-areas:
     'form form form form form form form form form form form form'
     'results results results results results results results results results results results results';
-  /* gap: var(--grid-gutter); */
+
   height: 100vh;
 }
 
 .form-container {
   grid-column: span 12;
+  grid-row: 1;
   grid-area: 'form';
   padding: 0.5rem;
-  height: auto;
+  height: min-content;
   border-top: 5px solid black;
   border-bottom: 5px solid black;
 }
@@ -60,12 +61,15 @@ body {
   justify-content: center;
   padding: 1rem;
 
-  /* has to be 100% for html2css to work?*/
-  height: 100%;
+  position: relative;
+  /* has to be heigth 100% for html2css to work?*/
+
+  height: 100%; /* Allow height to grow with content */
 }
 
 .results-container img {
   /* height: 150px; */
+  position: absolute;
   height: 20vh;
   width: auto;
   display: block;
@@ -85,7 +89,6 @@ form {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  width: 100%;
 }
 
 .form-left {
@@ -99,8 +102,8 @@ form {
   font-weight: 1000;
   font-size: var(--size-md);
   font-family: var(--system-ui);
-  text-align: right; /* Aligns the text to the right */
 
+  float: right;
   margin-left: auto;
   color: black;
 }

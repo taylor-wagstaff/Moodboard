@@ -130,15 +130,23 @@ document.addEventListener('DOMContentLoaded', () => {
               const imgWidth = draggedImage.offsetWidth
               const imgHeight = draggedImage.offsetHeight
 
-              let newX = e.pageX - offsetX
-              let newY = e.pageY - offsetY
+              let newX =
+                e.clientX -
+                containerRect.left -
+                offsetX +
+                resultsContainer.scrollLeft
+              let newY =
+                e.clientY -
+                containerRect.top -
+                offsetY +
+                resultsContainer.scrollTop
 
-              if (newX < containerRect.left) newX = containerRect.left
-              if (newX + imgWidth > containerRect.right)
-                newX = containerRect.right - imgWidth
-              if (newY < containerRect.top) newY = containerRect.top
-              if (newY + imgHeight > containerRect.bottom)
-                newY = containerRect.bottom - imgHeight
+              if (newX < 0) newX = 0
+              if (newX + imgWidth > resultsContainer.scrollWidth)
+                newX = resultsContainer.scrollWidth - imgWidth
+              if (newY < 0) newY = 0
+              if (newY + imgHeight > resultsContainer.scrollHeight)
+                newY = resultsContainer.scrollHeight - imgHeight
 
               draggedImage.style.left = newX + 'px'
               draggedImage.style.top = newY + 'px'
@@ -153,19 +161,89 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Save the moodboard to PNG
+  function updateContainerSize(container) {
+    const images = container.querySelectorAll('img')
+    let maxWidth = 0
+    let maxHeight = 0
+
+    images.forEach((img) => {
+      const rect = img.getBoundingClientRect()
+      maxWidth = Math.max(
+        maxWidth,
+        rect.right - container.getBoundingClientRect().left
+      )
+      maxHeight = Math.max(
+        maxHeight,
+        rect.bottom - container.getBoundingClientRect().top
+      )
+    })
+
+    container.style.width = `${maxWidth}px`
+    container.style.height = `${maxHeight}px`
+  }
+
+  function initDrag() {
+    const images = document.querySelectorAll('.results-container img')
+    images.forEach((img) => {
+      img.addEventListener('mousedown', function (event) {
+        const offsetX = event.clientX - img.getBoundingClientRect().left
+        const offsetY = event.clientY - img.getBoundingClientRect().top
+
+        function onMouseMove(event) {
+          img.style.left = `${event.clientX - offsetX}px`
+          img.style.top = `${event.clientY - offsetY}px`
+
+          // Update container size
+          const container = document.querySelector('.results-container')
+          updateContainerSize(container)
+        }
+
+        function onMouseUp() {
+          document.removeEventListener('mousemove', onMouseMove)
+          document.removeEventListener('mouseup', onMouseUp)
+        }
+
+        document.addEventListener('mousemove', onMouseMove)
+        document.addEventListener('mouseup', onMouseUp)
+      })
+    })
+  }
+
+  initDrag()
+
   function captureScreenshot(container) {
+    // Temporarily adjust container size and position
+    const originalOverflow = container.style.overflow
+    const originalWidth = container.style.width
+    const originalHeight = container.style.height
+    const originalPosition = container.style.position
+    const originalTop = container.style.top
+    const originalLeft = container.style.left
+
+    container.style.overflow = 'visible' // Make sure all contents are visible
+    container.style.position = 'relative' // Ensure proper positioning
+    container.style.width = `${container.scrollWidth}px`
+    container.style.height = `${container.scrollHeight}px`
+
     html2canvas(container, {
       logging: true,
       letterRendering: 1,
       allowTaint: false,
       useCORS: true,
-      scale: 5,
+      scale: 2,
     }).then((canvas) => {
       let link = document.createElement('a')
       link.download = 'moodboard.png'
       link.href = canvas.toDataURL()
       link.click()
+
+      // Restore original styles
+      container.style.overflow = originalOverflow
+      container.style.width = originalWidth
+      container.style.height = originalHeight
+      container.style.position = originalPosition
+      container.style.top = originalTop
+      container.style.left = originalLeft
     })
   }
 
