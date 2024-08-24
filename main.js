@@ -212,38 +212,19 @@ document.addEventListener('DOMContentLoaded', () => {
   initDrag()
 
   function captureScreenshot(container) {
-    // Temporarily adjust container size and position
-    const originalOverflow = container.style.overflow
-    const originalWidth = container.style.width
-    const originalHeight = container.style.height
-    const originalPosition = container.style.position
-    const originalTop = container.style.top
-    const originalLeft = container.style.left
-
-    container.style.overflow = 'visible' // Make sure all contents are visible
-    container.style.position = 'relative' // Ensure proper positioning
-    container.style.width = `${container.scrollWidth}px`
-    container.style.height = `${container.scrollHeight}px`
-
     html2canvas(container, {
       logging: true,
       letterRendering: 1,
       allowTaint: false,
       useCORS: true,
       scale: 2,
+      scrollX: 0,
+      scrollY: 0,
     }).then((canvas) => {
       let link = document.createElement('a')
       link.download = 'moodboard.png'
       link.href = canvas.toDataURL()
       link.click()
-
-      // Restore original styles
-      container.style.overflow = originalOverflow
-      container.style.width = originalWidth
-      container.style.height = originalHeight
-      container.style.position = originalPosition
-      container.style.top = originalTop
-      container.style.left = originalLeft
     })
   }
 
